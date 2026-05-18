@@ -64,7 +64,7 @@ const Navbar = () => {
 
           {/* Mobile Hamburger */}
           <button className="show-mobile" onClick={() => setMenuOpen(!menuOpen)}
-            style={{ background: "none", border: "none", color: "#fff", cursor: "pointer", padding: "0.5rem", display: "none" }}>
+            style={{ background: "none", border: "none", color: "#fff", cursor: "pointer", padding: "0.5rem" }}>
             {menuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
@@ -72,7 +72,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="show-mobile" style={{ position: "fixed", top: "64px", left: 0, right: 0, bottom: 0, background: "#0a0a0a", zIndex: 49, padding: "2rem", display: "none", flexDirection: "column", gap: "1rem", borderTop: "1px solid #1e1e1e" }}>
+        <div className="show-mobile" style={{ position: "fixed", top: "64px", left: 0, right: 0, bottom: "80px", background: "#0a0a0a", zIndex: 49, padding: "2rem", display: "flex", flexDirection: "column", gap: "1rem", borderTop: "1px solid #1e1e1e", overflowY: "auto" }}>
           {[{ to: "/", label: "Home" }, { to: "/markets", label: "Markets" }, { to: "/dashboard", label: "Portfolio" }].map(link => (
             <Link key={link.to} to={link.to} onClick={() => setMenuOpen(false)}
               style={{ color: "#fff", fontSize: "1.2rem", fontWeight: 700, textDecoration: "none", padding: "1rem 0", borderBottom: "1px solid #1e1e1e" }}>
