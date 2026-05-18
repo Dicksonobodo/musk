@@ -13,12 +13,12 @@ const Register = () => {
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value })
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!form.name || !form.email || !form.password) { setError("All fields are required"); return }
     if (form.password.length < 6) { setError("Password must be at least 6 characters"); return }
     setLoading(true)
     setError("")
-    const result = register(form.name, form.email, form.password)
+    const result = await register(form.name, form.email, form.password)
     setLoading(false)
     if (!result.success) setError(result.message)
     else navigate("/dashboard")
