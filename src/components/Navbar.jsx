@@ -72,33 +72,41 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="show-mobile" style={{ position: "fixed", top: "64px", left: 0, right: 0, bottom: "80px", background: "#0a0a0a", zIndex: 49, padding: "2rem", display: "flex", flexDirection: "column", gap: "1rem", borderTop: "1px solid #1e1e1e", overflowY: "auto" }}>
-          {[{ to: "/", label: "Home" }, { to: "/markets", label: "Markets" }, { to: "/dashboard", label: "Portfolio" }].map(link => (
-            <Link key={link.to} to={link.to} onClick={() => setMenuOpen(false)}
-              style={{ color: "#fff", fontSize: "1.2rem", fontWeight: 700, textDecoration: "none", padding: "1rem 0", borderBottom: "1px solid #1e1e1e" }}>
-              {link.label}
-            </Link>
-          ))}
-          {user ? (
-            <>
-              <p style={{ color: "#666", fontSize: "0.875rem", padding: "0.5rem 0" }}>Signed in as {user.name}</p>
-              <button onClick={handleLogout}
-                style={{ padding: "1rem", borderRadius: "12px", background: "#E31937", color: "#fff", fontWeight: 700, fontSize: "1rem", border: "none", cursor: "pointer" }}>
-                Logout
-              </button>
-            </>
-          ) : (
-            <>
-              <Link to="/login" onClick={() => setMenuOpen(false)}
-                style={{ padding: "1rem", borderRadius: "12px", background: "#111", color: "#fff", fontWeight: 700, fontSize: "1rem", textDecoration: "none", textAlign: "center", border: "1px solid #222" }}>
-                Login
+        <div className="show-mobile" style={{ position: "fixed", top: "64px", left: 0, right: 0, bottom: "80px", background: "#0a0a0a", zIndex: 49, padding: "2rem", display: "flex", flexDirection: "column", gap: "2rem", borderTop: "1px solid #1e1e1e", overflowY: "auto" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+            {[{ to: "/", label: "Home" }, { to: "/markets", label: "Markets" }, { to: "/dashboard", label: "Portfolio" }].map(link => (
+              <Link key={link.to} to={link.to} onClick={() => setMenuOpen(false)}
+                style={{ color: "#fff", fontSize: "1.1rem", fontWeight: 700, textDecoration: "none", padding: "0.5rem 0" }}>
+                {link.label}
               </Link>
-              <Link to="/register" onClick={() => setMenuOpen(false)}
-                style={{ padding: "1rem", borderRadius: "12px", background: "#E31937", color: "#fff", fontWeight: 700, fontSize: "1rem", textDecoration: "none", textAlign: "center" }}>
-                Get Started
-              </Link>
-            </>
-          )}
+            ))}
+          </div>
+
+          <div style={{ borderTop: "1px solid #1e1e1e", paddingTop: "2rem", display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+            {user ? (
+              <>
+                <div style={{ padding: "1.2rem", borderRadius: "12px", background: "#111", border: "1px solid #1e1e1e" }}>
+                  <p style={{ color: "#666", fontSize: "0.75rem", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: "0.5rem" }}>Signed in as</p>
+                  <p style={{ color: "#fff", fontSize: "1rem", fontWeight: 700 }}>{user.name}</p>
+                </div>
+                <button onClick={handleLogout}
+                  style={{ padding: "1rem", borderRadius: "12px", background: "#E31937", color: "#fff", fontWeight: 700, fontSize: "1rem", border: "none", cursor: "pointer", width: "100%" }}>
+                  Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <Link to="/login" onClick={() => setMenuOpen(false)}
+                  style={{ padding: "1rem", borderRadius: "12px", background: "#111", color: "#fff", fontWeight: 700, fontSize: "1rem", textDecoration: "none", textAlign: "center", border: "1px solid #222", width: "100%", boxSizing: "border-box", display: "block" }}>
+                  Login
+                </Link>
+                <Link to="/register" onClick={() => setMenuOpen(false)}
+                  style={{ padding: "1rem", borderRadius: "12px", background: "#E31937", color: "#fff", fontWeight: 700, fontSize: "1rem", textDecoration: "none", textAlign: "center", width: "100%", boxSizing: "border-box", display: "block" }}>
+                  Get Started
+                </Link>
+              </>
+            )}
+          </div>
         </div>
       )}
     </>
