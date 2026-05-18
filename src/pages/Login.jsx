@@ -13,10 +13,10 @@ const Login = () => {
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value })
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     setLoading(true)
     setError("")
-    const result = login(form.email, form.password)
+    const result = await login(form.email, form.password)
     setLoading(false)
     if (!result.success) setError(result.message)
     else navigate("/dashboard")
