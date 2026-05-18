@@ -1,12 +1,22 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { coins } from "../data/coins"
 import { plans } from "../data/plans"
 import CoinCard from "../components/CoinCard"
 import PlanCard from "../components/PlanCard"
 import { ArrowRight, Shield, Zap, Globe } from "lucide-react"
+import { useAuth } from "../hooks/useAuth"
 
 const Landing = () => {
-  return (
+  const { user } = useAuth()
+  const navigate = useNavigate()
+
+  const handleStartInvesting = () => {
+    if (user) {
+      navigate("/dashboard")
+    } else {
+      navigate("/register")
+    }
+  }
     <div style={{ minHeight: "100vh", background: "#0a0a0a" }}>
 
       {/* HERO */}
@@ -26,9 +36,9 @@ const Landing = () => {
               Introducing Musk Verse — the next-gen investment platform designed to reshape global wealth through crypto and stock markets.
             </p>
             <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
-              <Link to="/register" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", padding: "0.9rem 2rem", borderRadius: "12px", background: "#E31937", color: "#fff", fontWeight: 700, fontSize: "0.95rem", textDecoration: "none" }}>
+              <button onClick={handleStartInvesting} style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", padding: "0.9rem 2rem", borderRadius: "12px", background: "#E31937", color: "#fff", fontWeight: 700, fontSize: "0.95rem", textDecoration: "none", border: "none", cursor: "pointer" }}>
                 Start Investing <ArrowRight size={18} />
-              </Link>
+              </button>
               <Link to="/markets" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", padding: "0.9rem 2rem", borderRadius: "12px", background: "#111", color: "#fff", fontWeight: 700, fontSize: "0.95rem", textDecoration: "none", border: "1px solid #222" }}>
                 View Markets
               </Link>
@@ -128,9 +138,9 @@ const Landing = () => {
             <h3 style={{ fontSize: "clamp(1.3rem, 3vw, 2rem)", fontWeight: 900, color: "#fff", marginBottom: "0.5rem" }}>Ready to Start Investing?</h3>
             <p style={{ color: "#ffaaaa", fontSize: "0.95rem" }}>Join 25,000+ investors already growing their wealth.</p>
           </div>
-          <Link to="/register" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", padding: "1rem 2rem", borderRadius: "14px", background: "#fff", color: "#E31937", fontWeight: 800, fontSize: "0.95rem", textDecoration: "none", whiteSpace: "nowrap" }}>
-            Create Free Account <ArrowRight size={18} />
-          </Link>
+          <button onClick={handleStartInvesting} style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", padding: "1rem 2rem", borderRadius: "14px", background: "#fff", color: "#E31937", fontWeight: 800, fontSize: "0.95rem", textDecoration: "none", whiteSpace: "nowrap", border: "none", cursor: "pointer" }}>
+            {user ? "Go to Dashboard" : "Create Free Account"} <ArrowRight size={18} />
+          </button>
         </div>
       </div>
 
