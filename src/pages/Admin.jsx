@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { useAuth } from "../hooks/useAuth"
-import { Users, DollarSign, CheckCircle, TrendingUp, Search, Send, X, Clock, AlertCircle } from "lucide-react"
+import { Users, DollarSign, CheckCircle, TrendingUp, Search, Send, X, Clock, } from "lucide-react"
 
 const Admin = () => {
   const { users, fundUser, fetchUsers, fetchWithdrawals, updateWithdrawal } = useAuth()
